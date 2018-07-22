@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  app:
+    container_name: demo
+    build: .
+    links:
+      - db
+      - queue
+    ports:
+      - "80:80"
+    volumes:
+      - .:/opt/demo:cached
+    environment:
+      DATABASE_URL: 'mysql://dbuser:dbpass@db/demo'
+      MESSENGER_TRANSPORT_DSN: 'amqp://guest:guest@queue:5672/%2f/messages'
+
+  queue:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 8080:15672
+
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: demo
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+
+volumes:
+  db_data:
