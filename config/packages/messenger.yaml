@@ -9,4 +9,6 @@ framework:
             # 'App\Message\YourMessage': amqp
 
         buses:
-            app.messenger.command_bus: ~
+            app.messenger.command_bus:
+                middleware:
+                    - messenger.middleware.validation

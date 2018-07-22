@@ -4,14 +4,30 @@ declare(strict_types = 1);
 
 namespace App\Message;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 final class Signup
 {
+    /**
+     * @Assert\NotBlank()
+     */
     private $firstName;
 
+    /**
+     * @Assert\NotBlank()
+     */
     private $lastName;
 
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     */
     private $email;
 
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=6)
+     */
     private $password;
 
     public function __construct(string $firstName, string $lastName, string $email, string $password)

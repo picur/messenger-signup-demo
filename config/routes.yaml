@@ -2,6 +2,11 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+api_signup:
+    path: /api/signup
+    methods: ['POST']
+    controller: App\Controller\ApiDemoController::signup
+
 signup:
     path: /
     controller: App\Controller\DemoController::signup
