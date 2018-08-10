@@ -5,8 +5,9 @@ namespace App\MessageHandler;
 use App\Message\SignupCompleted;
 use Swift_Mailer;
 use Swift_Message;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class SignupConfirmationNotificationHandler
+class SignupConfirmationNotificationHandler implements MessageHandlerInterface
 {
     private $mailer;
 

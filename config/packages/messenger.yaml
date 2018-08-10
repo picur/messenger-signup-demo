@@ -4,6 +4,7 @@ framework:
             amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
 
         routing:
+            App\Message\Signup: ['amqp']
             App\Message\SignupCompleted: ['amqp']
 
         serializer: ~

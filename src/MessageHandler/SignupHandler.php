@@ -8,10 +8,11 @@ use App\Entity\User;
 use App\Message\Signup;
 use App\Message\SignupCompleted;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-final class SignupHandler
+final class SignupHandler implements MessageHandlerInterface
 {
     private $entityManager;
     private $passwordEncoder;
