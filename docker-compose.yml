@@ -13,7 +13,7 @@ services:
       - .:/opt/demo:cached
     environment:
       DATABASE_URL: 'mysql://dbuser:dbpass@db/demo'
-      MESSENGER_TRANSPORT_DSN: 'amqp://guest:guest@queue:5672/%2f/messages'
+      MESSENGER_TRANSPORT_DSN: 'amqp://guest:guest@queue:5672/%2f'
 
   queue:
     container_name: rabbitmq

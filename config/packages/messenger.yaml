@@ -1,11 +1,12 @@
 framework:
     messenger:
         transports:
-            amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+            commands: '%env(MESSENGER_TRANSPORT_DSN)%/commands'
+            events: '%env(MESSENGER_TRANSPORT_DSN)%/events'
 
         routing:
-            App\Message\Signup: ['amqp']
-            App\Message\SignupCompleted: ['amqp']
+            App\Message\Signup: ['commands']
+            App\Message\SignupCompleted: ['events']
 
         serializer: ~
 
