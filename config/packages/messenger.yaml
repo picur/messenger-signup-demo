@@ -1,12 +1,14 @@
 framework:
     messenger:
         transports:
-            commands: '%env(MESSENGER_TRANSPORT_DSN)%/commands'
-            events: '%env(MESSENGER_TRANSPORT_DSN)%/events'
+            command: '%env(MESSENGER_TRANSPORT_DSN)%/commands'
+            event: '%env(MESSENGER_TRANSPORT_DSN)%/events'
+            retry: '%env(MESSENGER_TRANSPORT_DSN)%/retries'
 
         routing:
-            App\Message\Signup: ['commands']
-            App\Message\SignupCompleted: ['events']
+            App\Message\Signup: 'command'
+            App\Message\SignupCompleted: 'event'
+            App\Message\RetryMessage: 'retry'
 
         serializer: ~
 
@@ -16,8 +18,11 @@ framework:
             app.messenger.command_bus:
                 middleware:
                     - messenger.middleware.validation
+                    - App\Middleware\RetryQueueMiddleware
 
             app.messenger.event_bus:
                 middleware:
                     - messenger.middleware.validation
                     - messenger.middleware.allow_no_handler
+
+            app.messenger.retry_bus: ~
