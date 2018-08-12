@@ -68,6 +68,6 @@ Docker-Setup
 6. Gequeuete Messages abarbeiten
 
    ```
-   docker-compose exec php bash
+   docker-compose exec app bash
    bin/console messenger:consume-messages
    ```
