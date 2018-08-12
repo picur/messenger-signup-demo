@@ -20,3 +20,4 @@ framework:
             app.messenger.event_bus:
                 middleware:
                     - messenger.middleware.validation
+                    - messenger.middleware.allow_no_handler
